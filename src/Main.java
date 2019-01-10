@@ -30,7 +30,7 @@ public class Main {
 //		System.out.println(p.compara(x,p));
 //		
 		
-		Compara <Ponto2D> comparador = ( a,b ) -> a.compara(a,b);
+		Compara <Ponto2D> comparador = ( a , b ) -> compara(a,b);
 		
 		
 		System.out.println(comparador.compara(p, x));
@@ -42,7 +42,10 @@ public class Main {
 	
 	
 	}
-	
+	public static boolean compara(Object a, Object b) {
+		// TODO Auto-generated method stub
+		return ((Ponto2D) a).isEqual((Ponto2D)b);
+	}
 
 
 }
