@@ -1,5 +1,5 @@
 
-public class Ponto2D implements Compara{
+public class Ponto2D{
 
 	//Variables
 	//utilidades do encapsulamento e não afectar as dependencias
@@ -177,11 +177,7 @@ public class Ponto2D implements Compara{
 	}
 	
 	//Functional interface
-	@Override
-	public boolean compara(Object a, Object b) {
-		// TODO Auto-generated method stub
-		return ((Ponto2D) a).isEqual((Ponto2D)b);
-	}
+
 	
 	//h) Produzir a documentação sobre a classe Ponto2D 
 	//done
