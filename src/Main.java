@@ -1,3 +1,6 @@
+import java.awt.List;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Comparator;
 
 public class Main {
@@ -15,18 +18,20 @@ public class Main {
 		//validar pontos 
 		IsValid <Ponto2D> i = (x, y) -> pontoValido(x,y);
 		
-		Ponto2D x = new Ponto2D(i.valido(0, 1));
+		Ponto2D x = new Ponto2D(i.valido(4, 5));
 			
 		System.out.println(x.toString());
 		
-		Ponto2D p = new Ponto2D(0,0);
+		Ponto2D p = new Ponto2D(4,8);
 		
 		
 		
 		//expressao lambda de validação7
-		ValidarSegmento <SegmentoDeReta> vs = ab -> valido(ab);
+		ValidarSegmento  vs = ab -> valido(ab);
 		//validar pontos de um segmento de reta utilizando a functional interface ValidarSegmento
-		SegmentoDeReta s = vs.valido(new SegmentoDeReta(x , p)) ? new SegmentoDeReta(x , p) : new SegmentoDeReta ();
+		SegmentoDeReta s = vs.valido(new SegmentoDeReta (x,p)) ?
+				new SegmentoDeReta(x , p) : 
+					new SegmentoDeReta ();
 		
 		
 		System.out.println(s.toString());
@@ -42,18 +47,27 @@ public class Main {
 //		
 //		System.out.println(p.compara(x,p));
 //		
-		
+		//comparador simples de classes 
 		Compara <Ponto2D> comparador = ( a , b ) -> comparaClasses(a,b);
 		
-		
+		//Podemos comparar diferentis tipos de objetos como Pontos2D (construidos anteriormennte)
 		System.out.println(comparador.compara(p, x));
-		
+		//Ou comparar Pontos3D, esta função e muito simples mas podia ser mais rubusta e servir mais interfaces
 		Ponto3D p3d1 = new Ponto3D(1.1,2.2 , 3.3);
 		Ponto3D p3d2 = new Ponto3D(1.1,2.2 , 3.3);
 		
 		System.out.println(comparador.compara(p3d1, p3d2));
 	
 	
+		//exemplo de uma stream com filtros usando expressoes lambda
+		java.util.List<Integer> list = Arrays.asList(0,1,2,34,4,5,3);
+		
+		System.out.println(list.stream()
+				.filter(Sample -> Sample % 2 == 0)
+				.filter(Sample -> Sample >= 10)
+		.findFirst()
+		.get());
+		
 	}
 	
 	public static boolean comparaClasses(Object a, Object b) {
@@ -74,14 +88,14 @@ public class Main {
 		return new Ponto2D();
 	}
 	
-	public interface ValidarSegmento <SegmentoDeReta>{
+	public interface ValidarSegmento{
 		boolean valido(SegmentoDeReta a );
 	}
 	public static boolean valido(SegmentoDeReta a) {
-		if(a.getA().getX() > 0 ||a.getA().getY() > 0 
-				|| a.getB().getX() >0 || a.getB().getY() > 0)
-			return true;
-		return false;
+		if(a.getA().getX() ==  a.getB().getX()
+				&& a.getB().getY() == a.getA().getY())
+			return false;
+		return true;
 		
 	}
 }
