@@ -144,18 +144,7 @@ public class Ponto2D{
 		
 	}
 	
-	//g) Criar os métodos complementares usuais: 
-		//g.1. Verificar se 2 pontos são iguais.  
-	public boolean isEqual (Ponto2D x) {
-		boolean b;
-		
-		if(this.getX() == x.getX() && this.getY() == x.getY())
-			b = true;
-		else 
-			b = false;
-		
-		return b;
-	}
+
 		//g.2. Converter o ponto para uma representação textual. 
 	
 	public void writePoint() {
@@ -175,12 +164,25 @@ public class Ponto2D{
 	
 		return clone;
 	}
+	//g) Criar os métodos complementares usuais: 
+	//g.1. Verificar se 2 pontos são iguais.  
+	public boolean isEqual (Ponto2D x) {
+	boolean b;
 	
-	//Functional interface
-
+	if(this.getX() == x.getX() && this.getY() == x.getY())
+		b = true;
+	else 
+		b = false;
 	
-	//h) Produzir a documentação sobre a classe Ponto2D 
-	//done
+	return b;
+	}
+	
+	
+	//metodo tradicional de comparação entre classes
+	public boolean comparaClasse(Ponto2D x) {
+		// TODO Auto-generated method stub
+		return x.getClass() == this.getClass();
+	}
 	
 	
 }
