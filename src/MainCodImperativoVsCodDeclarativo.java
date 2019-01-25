@@ -9,6 +9,8 @@ public class MainCodImperativoVsCodDeclarativo {
 		System.out.println(ePrimo(3));
 		
 		
+		//Exemplo de codigo funcional
+		
 	}
 	/*
 	public static boolean ePrimo(int num) {

@@ -12,18 +12,19 @@ public class MainInterfacesFuncionaisComLambda {
 		
 		//metodo tradicional utilizando o metodo que o objeto têm definido na classe
 		
-		System.out.println(p1.comparaClasse(x1));
+		System.out.println("Compara, p1 == p2 ?:" +p1.comparaClasse(x1));
 		
 		
 		//comparar pontos utilizando Expressão lambda 
-		IsValid <Ponto2D> validaPonto = (x, y) -> pontoValido(x,y);
-		
-		validaPonto.valido(4, 5);
-		
+		IsValid <Ponto2D> validaPonto = (x, y) -> validarPonto(x,y);
+		//Expressão lambda equivalente 
+		IsValid <Ponto2D> validaPonto2 = ( x, y) -> x != 0 || y != 0;
+		System.out.println("ValidaPonto :" +validaPonto.valido(4, 5));
+		System.out.println("ValidaPonto2 :" +validaPonto2.valido(4, 0));
 		
 		//implementação da validação utilizando POO
-		Ponto2D x = new Ponto2D(validaPonto.valido(4, 5));
-		Ponto2D p = new Ponto2D(validaPonto.valido(4, 5));
+		Ponto2D x = new Ponto2D(4, 5);
+		Ponto2D p = new Ponto2D(4, 5);
 		
 		System.out.println(x.toString());
 		System.out.println(p.toString());
@@ -32,27 +33,27 @@ public class MainInterfacesFuncionaisComLambda {
 		Compara <Ponto2D> comparadorClasses = ( a , b ) -> comparaClasses(a,b);
 		
 		//Podemos comparar diferentes tipos de objetos, como Pontos2D (construidos anteriormennte)
-		System.out.println(comparadorClasses.compara(p, x));
+		System.out.println("Comparador Classe  :" +comparadorClasses.compara(p, x));
 	
 		//Ou comparar Pontos3D, esta função e muito simples mas podia ser mais rubusta e servir mais interfaces
 		Ponto3D p3d1 = new Ponto3D(1.1, 2.2 , 3.3);
 		Ponto3D p3d2 = new Ponto3D(1.1, 2.2 , 3.3);
 
-		System.out.println(comparadorClasses.compara(p3d1, p3d2));
+		System.out.println("Comparador Classe  :" +comparadorClasses.compara(p3d1, p3d2));
 		
 		
 	}
 	//Functional interface
 	@FunctionalInterface
 	public interface IsValid<Obj>{
-		Ponto2D valido(int a, int b);
+		boolean valido(int a, int b);
 	}
 	
-	public static Ponto2D pontoValido(int a, int b) {
+	public static boolean validarPonto(int a, int b) {
 		if(a != 0 ||  b != 0)
-		return  new Ponto2D( a, b) ;
+		return  true;
 		
-		return new Ponto2D();
+		return false;
 	}
 	
 
